@@ -57,7 +57,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: .
+# ... antes del paso 5 (Snyk)
+      - name: 🐍 Setup Python 3.11 for Snyk and CodeQL
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Usa una versión moderna y soportada
 
+      # --- 5. INTEGRACIÓN SNYK ...(
       # --- 5. INTEGRACIÓN SNYK (VULNERABILIDADES DE CÓDIGO Y DEPENDENCIAS) ---
       - name: 🛡️ Snyk Vulnerability Scan (Code & Dependencies)
         uses: snyk/actions/python@master
